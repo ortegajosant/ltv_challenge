@@ -1,10 +1,14 @@
 package routes
 
+// This is the main script that manage the routes of the API
+// Here the routes are setted
+
 import (
 	"goji.io"
 	"goji.io/pat"
 )
 
+// Init the routes of the API
 func Server_init() *goji.Mux {
 
 	// Set the root route

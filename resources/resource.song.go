@@ -1,7 +1,7 @@
-package models
+package resources
 
+// This is a Presentation Model Resource to Song Model
 type SongsResource struct {
-	Id     int    `json:"id,omitempty"`
 	Artist string `json:"artist"`
 	Song   string `json:"song"`
 	Genre  string `json:"genre"`
