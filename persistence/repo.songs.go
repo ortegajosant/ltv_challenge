@@ -29,6 +29,12 @@ func GetSongByName(songName string) ([]models.Songs, error) {
 	return getAllSongs(query)
 }
 
+func GetSongByLength(min int, max int) ([]models.Songs, error) {
+	query := fmt.Sprintf("SELECT * FROM songs WHERE length >= %d and length <= %d;", min, max)
+
+	return getAllSongs(query)
+}
+
 // Common function to give the genres in the Songs Model Schema
 func getAllSongs(query string) ([]models.Songs, error) {
 	db_context := Db_init()

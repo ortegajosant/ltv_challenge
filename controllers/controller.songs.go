@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"io/ioutil"
 	"ltv_challenge/mapping"
 	"ltv_challenge/models"
 	"ltv_challenge/persistence"
@@ -57,8 +58,8 @@ func SongByArtist(w http.ResponseWriter, r *http.Request) {
 
 // Return the songs by genre
 func SongByGenre(w http.ResponseWriter, r *http.Request) {
-	artist := pat.Param(r, "genre")
-	songs, err := persistence.GetSongByGenre(artist)
+	genre := pat.Param(r, "genre")
+	songs, err := persistence.GetSongByGenre(genre)
 
 	if err != nil {
 		http.Error(w, "There is an error: "+err.Error(), http.StatusBadGateway)
@@ -71,8 +72,35 @@ func SongByGenre(w http.ResponseWriter, r *http.Request) {
 
 // Return the songs by song name
 func SongByName(w http.ResponseWriter, r *http.Request) {
-	artist := pat.Param(r, "name")
-	songs, err := persistence.GetSongByName(artist)
+	name := pat.Param(r, "name")
+	songs, err := persistence.GetSongByName(name)
+
+	if err != nil {
+		http.Error(w, "There is an error: "+err.Error(), http.StatusBadGateway)
+		return
+	}
+
+	sendSongResponse(w, songs)
+
+}
+
+// Return the songs by song min and max length
+func SongByLength(w http.ResponseWriter, r *http.Request) {
+	body, err := ioutil.ReadAll(r.Body)
+
+	if err != nil {
+		http.Error(w, "There is an error: "+err.Error(), http.StatusBadGateway)
+		return
+	}
+
+	request, err := mapping.ToLengthRequestResource(body)
+
+	if err != nil {
+		http.Error(w, "There is an error: "+err.Error(), http.StatusBadGateway)
+		return
+	}
+
+	songs, err := persistence.GetSongByLength(request.Min, request.Max)
 
 	if err != nil {
 		http.Error(w, "There is an error: "+err.Error(), http.StatusBadGateway)
