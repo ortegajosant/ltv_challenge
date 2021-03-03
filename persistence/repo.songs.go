@@ -29,10 +29,22 @@ func GetSongByName(songName string) ([]models.Songs, error) {
 	return getAllSongs(query)
 }
 
+// This function get the songs that are between a range
 func GetSongByLength(min int, max int) ([]models.Songs, error) {
 	query := fmt.Sprintf("SELECT * FROM songs WHERE length >= %d and length <= %d;", min, max)
 
 	return getAllSongs(query)
+}
+
+// This function get the amount and the total length of the songs by genre Name
+func GetSongsNumberAndLength(genre string) ([]models.Songs, error) {
+	query := fmt.Sprintf("SELECT COUNT(S.Id) AS amount, SUM(S.Length) AS totalLength FROM Songs S INNER JOIN Genres G ON S.Genre = G.Id WHERE G.Name = '%s'", genre)
+
+	return getAllSongs(query)
+}
+
+func getSongsInfo() {
+
 }
 
 // Common function to give the genres in the Songs Model Schema

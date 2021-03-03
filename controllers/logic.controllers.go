@@ -22,3 +22,7 @@ func getAllGenresFromSongs(songs []models.Songs) ([]models.Genres, error) {
 	return genres, nil
 
 }
+
+func getSongsInfoFromGenres(genres []models.Genres) {
+
+}
