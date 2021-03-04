@@ -3,27 +3,13 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
-	"ltv_challenge/models"
+	"ltv_challenge/mapping"
 	"ltv_challenge/persistence"
 	"net/http"
 	"strconv"
 
 	"goji.io/pat"
 )
-
-// Common function to send the response
-func sendGenreResponse(w http.ResponseWriter, genres []models.Genres) {
-	j, err := json.Marshal(genres)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
-
-	w.WriteHeader(http.StatusOK)
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(j)
-
-}
 
 // This send one
 func GenreByID(w http.ResponseWriter, r *http.Request) {
@@ -41,5 +27,35 @@ func GenreByID(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	sendGenreResponse(w, genres)
+	json, err := json.Marshal(genres)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	sendResponse(w, json)
+}
+
+func GenreAllInfo(w http.ResponseWriter, r *http.Request) {
+	genres, err := persistence.GetAllGenres()
+
+	if err != nil {
+		http.Error(w, "There is an error: "+err.Error(), http.StatusBadGateway)
+	}
+
+	songInfo, err := getSongsInfoFromGenres(genres)
+
+	if err != nil {
+		http.Error(w, "There is an error: "+err.Error(), http.StatusBadGateway)
+	}
+
+	genresData, _ := mapping.ToGenresWithSongsInfo(genres, songInfo)
+
+	json, err := json.Marshal(genresData)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	sendResponse(w, json)
 }

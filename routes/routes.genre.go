@@ -10,4 +10,5 @@ import (
 // Init the genre api routes
 func set_genres_routes(genres *goji.Mux) {
 	genres.HandleFunc(pat.Get("/search/:id"), controllers.GenreByID)
+	genres.HandleFunc(pat.Get("/allWithInfo"), controllers.GenreAllInfo)
 }

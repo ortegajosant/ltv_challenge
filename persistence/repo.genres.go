@@ -12,8 +12,15 @@ import (
 // This function do the query to get the genre by ID
 func GetOneGenreById(genreId int) ([]models.Genres, error) {
 	query := fmt.Sprintf("SELECT * FROM genres WHERE ID = %d;", genreId)
-	genres, err := getAllGenre(query)
-	return genres, err
+
+	return getAllGenre(query)
+}
+
+// This function do the query to get the All the genres in the DB
+func GetAllGenres() ([]models.Genres, error) {
+	query := "SELECT * FROM Genres;"
+
+	return getAllGenre(query)
 }
 
 // Common function to give the genres in the Genre Model Schema
