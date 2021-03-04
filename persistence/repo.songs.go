@@ -5,6 +5,7 @@ package persistence
 import (
 	"fmt"
 	"ltv_challenge/models"
+	"ltv_challenge/resources"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -37,14 +38,35 @@ func GetSongByLength(min int, max int) ([]models.Songs, error) {
 }
 
 // This function get the amount and the total length of the songs by genre Name
-func GetSongsNumberAndLength(genre string) ([]models.Songs, error) {
+func GetSongNumberAndLength(genre string) ([]resources.GenresAmountLengthResource, error) {
 	query := fmt.Sprintf("SELECT COUNT(S.Id) AS amount, SUM(S.Length) AS totalLength FROM Songs S INNER JOIN Genres G ON S.Genre = G.Id WHERE G.Name = '%s'", genre)
 
-	return getAllSongs(query)
+	return getSongsInfo(query)
 }
 
-func getSongsInfo() {
+// Common
+func getSongsInfo(query string) ([]resources.GenresAmountLengthResource, error) {
+	db_context := Db_init()
+	rows, err := db_context.Query(query)
+	if err != nil {
+		return []resources.GenresAmountLengthResource{}, err
+	}
+	// The resource is closed
+	defer rows.Close()
 
+	songs := []resources.GenresAmountLengthResource{}
+	var song resources.GenresAmountLengthResource
+
+	for rows.Next() {
+		rows.Scan(
+			&song.Number,
+			&song.TotalLength,
+		)
+
+		songs = append(songs, song)
+	}
+
+	return songs, nil
 }
 
 // Common function to give the genres in the Songs Model Schema

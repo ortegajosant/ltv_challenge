@@ -42,3 +42,20 @@ func ToLengthRequestResource(request []byte) (resources.LengthRequest, error) {
 
 	return objmap, nil
 }
+
+// This function parse the request to get song by length into a Model Resource
+func ToGenresWithSongsInfo(genres []models.Genres,
+	songInfo []resources.GenresAmountLengthResource) ([]resources.GenresAmountLengthResource, error) {
+
+	result := []resources.GenresAmountLengthResource{}
+
+	for i := 0; i < len(genres); i++ {
+		result = append(result, resources.GenresAmountLengthResource{
+			GenreName:   genres[i].Name,
+			Number:      songInfo[i].Number,
+			TotalLength: songInfo[i].TotalLength,
+		})
+	}
+
+	return result, nil
+}

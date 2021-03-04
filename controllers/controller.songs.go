@@ -34,11 +34,7 @@ func sendSongResponse(w http.ResponseWriter, songs []models.Songs) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-
-	// Sending the file
-	w.WriteHeader(http.StatusOK)
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(j)
+	sendResponse(w, j)
 }
 
 // The following functions get the request and return the songs
