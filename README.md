@@ -10,7 +10,7 @@ This project was developed in `Linux Ubuntu 20.04`
 - `git clone` *https, ssh or Github CLI*
 - `git remote add origin` *https, ssh or Github CLI*
 
-2. Then, create a folder in the root path of the project named `sql`:
+2. Then, create a folder named `sql` in the root path of the project:
 - `mkdir sql`
 
 3. This project use a DB based on SQLite, you can download it from:
