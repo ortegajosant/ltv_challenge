@@ -61,9 +61,8 @@ The developed API has the following endpoints:
 
 ## Additional Questions
 1. Are there any suggestions you could make about the structure of our data?
-	- Some column names could be more destriptive, For example: change the column `Genre` to `GenreId`, also, `Song` to `SongName` or just `Name`.
-	- Add one more table which could be named `Artists` and change the `Songs` column named `artist` to `ArtistId`. Then, you can associate a lot of songs with the same artist.
-	- 
+	- Some column names could be more descriptive, For example: changing the columns `Genre` to `GenreId`, `Song` to `SongName` or just `Name`.
+	- Add one more table which could be named `Artists` and change the `Songs` table column named `artist` to `ArtistId`. Then, you can associate a lot of songs with the same artist.
 
 2. What fields would you index in these tables?
 	- The tables would be like:
@@ -79,3 +78,7 @@ The developed API has the following endpoints:
 		3. `Artists`:
 			1. `Id`
 			2. `Name`
+
+Developed by: Jose Antonio Ortega González
+Email: ortega.josat@gmail.com
+GitHubUser: ortegajosant
