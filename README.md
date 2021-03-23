@@ -1,7 +1,7 @@
-# Technical Challenge
+# Technical Practice
 
 ### Info
-This repo store the code which implement the required tasks to complete a technical challenge.
+This repo store the code which implement the required tasks to complete a technical practice in GoLang.
 This project was developed in `Linux Ubuntu 20.04`
 
 ### Requirements
@@ -58,26 +58,7 @@ The developed API has the following endpoints:
 		This will give you a genre found by specific ID.
 		-  `/api/genres/allWithInfo`
 		This will give you all the genres with the number of songs and the total length for each genre.
-
-## Additional Questions
-1. Are there any suggestions you could make about the structure of our data?
-	- Some column names could be more descriptive, For example: changing the columns `Genre` to `GenreId`, `Song` to `SongName` or just `Name`.
-	- Add one more table which could be named `Artists` and change the `Songs` table column named `artist` to `ArtistId`. Then, you can associate a lot of songs with the same artist.
-
-2. What fields would you index in these tables?
-	- The tables would be like:
-		1. `Songs`:
-			1. `Id`		
-			2. `ArtistId`	
-			3. `GenreId`	
-			4. `Name`
-			6. `Length`	
-		2. `Genres`:
-			1. `Id`
-			2. `Name`
-		3. `Artists`:
-			1. `Id`
-			2. `Name`
+		
 
 Developed by: Jose Antonio Ortega González
 Email: ortega.josat@gmail.com
