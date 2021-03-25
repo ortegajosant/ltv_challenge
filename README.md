@@ -60,6 +60,8 @@ The developed API has the following endpoints:
 		This will give you all the genres with the number of songs and the total length for each genre.
 		
 
-Developed by: Jose Antonio Ortega González
-Email: ortega.josat@gmail.com
-GitHubUser: ortegajosant
+### _Developed by:_ Jose Antonio Ortega González
+
+### _Email:_ ortega.josat@gmail.com
+
+### _GitHubUser:_ github.com/ortegajosant
