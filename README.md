@@ -1,7 +1,7 @@
 # Technical Practice
 
 ### Info
-This repo store the code which implement the required tasks to complete a technical practice in GoLang.
+This repo store the code which implement the Rest API based in GoLang.
 This project was developed in `Linux Ubuntu 20.04`
 
 ### Requirements
